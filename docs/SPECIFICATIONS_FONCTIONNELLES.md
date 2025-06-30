@@ -15,30 +15,25 @@ Ce projet vise à offrir une expérience utilisateur intuitive pour manipuler de
   Affichage d’une zone de dessin SVG, redimensionnable si besoin.
 
 - **Création de formes** :
-
   - Rectangle
   - Cercle
   - Ligne
   - Texte
 
 - **Sélection et déplacement** :
-
   - Sélection d’un objet par clic
   - Déplacement par glisser-déposer
 
 - **Modification des propriétés** :
-
   - Position (x, y)
   - Dimensions (largeur, hauteur, rayon…)
   - Couleur de remplissage et de contour
   - Épaisseur du trait
 
 - **Suppression d’objets** :
-
   - Suppression via une commande ou une touche clavier
 
 - **Import / Export** :
-
   - Import de fichiers SVG existants
   - Export du dessin courant au format SVG
 

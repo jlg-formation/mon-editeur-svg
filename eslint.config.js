@@ -20,4 +20,9 @@ export default tseslint.config([
       globals: globals.browser,
     },
   },
+  {
+    rules: {
+      // put your specific rules here.
+    },
+  },
 ])
