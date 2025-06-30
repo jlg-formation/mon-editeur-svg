@@ -6,6 +6,8 @@ export default function Toolbar() {
   const selectedId = useSvgStore((s) => s.selectedId)
   const toggleGrid = useSvgStore((s) => s.toggleGrid)
   const showGrid = useSvgStore((s) => s.showGrid)
+  const zoom = useSvgStore((s) => s.zoom)
+  const setZoom = useSvgStore((s) => s.setZoom)
 
   return (
     <div className="flex gap-2">
@@ -28,6 +30,21 @@ export default function Toolbar() {
       >
         {showGrid ? 'Masquer' : 'Afficher'} la grille
       </button>
+      <button
+        className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300"
+        onClick={() => setZoom(zoom * 1.1)}
+      >
+        Zoom +
+      </button>
+      <button
+        className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300"
+        onClick={() => setZoom(zoom * 0.9)}
+      >
+        Zoom -
+      </button>
+      <span className="flex items-center text-sm text-gray-600">
+        {Math.round(zoom * 100)}%
+      </span>
     </div>
   )
 }
