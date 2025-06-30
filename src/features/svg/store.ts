@@ -3,6 +3,8 @@ import type { SvgDocument, SvgShape, SvgRect } from './types'
 
 interface SvgUiState {
   showGrid: boolean
+  zoom: number
+  pan: { x: number; y: number }
 }
 
 type SvgActions = {
@@ -11,6 +13,8 @@ type SvgActions = {
   removeSelected: () => void
   updateShape: (id: string, patch: Partial<SvgShape>) => void // Ajout
   toggleGrid: () => void
+  setZoom: (zoom: number) => void
+  setPan: (pan: { x: number; y: number }) => void
 }
 
 const initialDoc: SvgDocument = {
@@ -21,6 +25,8 @@ const initialDoc: SvgDocument = {
 export const useSvgStore = create<SvgDocument & SvgUiState & SvgActions>((set, get) => ({
   ...initialDoc,
   showGrid: false,
+  zoom: 1,
+  pan: { x: 0, y: 0 },
   addRect: () => {
     const newRect: SvgRect = {
       id: crypto.randomUUID(),
@@ -51,4 +57,6 @@ export const useSvgStore = create<SvgDocument & SvgUiState & SvgActions>((set, g
     }))
   },
   toggleGrid: () => set((state) => ({ showGrid: !state.showGrid })),
+  setZoom: (zoom) => set({ zoom }),
+  setPan: (pan) => set({ pan }),
 }))
