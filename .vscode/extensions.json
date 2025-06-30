@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "whtouche.vscode-js-console-utils",
+    "meganrogge.template-string-converter",
+    "yatki.vscode-surround"
+  ]
+}
