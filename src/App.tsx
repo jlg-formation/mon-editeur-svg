@@ -1,5 +1,6 @@
 import Toolbar from './features/svg/Toolbar'
 import SvgCanvas from './features/svg/SvgCanvas'
+import ShapePropertiesPanel from './features/svg/ShapePropertiesPanel'
 
 export default function App() {
   return (
@@ -8,10 +9,11 @@ export default function App() {
         <h1 className="text-2xl font-bold">Éditeur SVG React</h1>
         <Toolbar />
       </header>
-      <main className="flex flex-1 items-center justify-center">
-        <div className="rounded bg-white p-4 shadow">
+      <main className="flex flex-1 items-stretch justify-center">
+        <div className="flex items-center rounded bg-white p-4 shadow">
           <SvgCanvas />
         </div>
+        <ShapePropertiesPanel />
       </main>
       <footer className="p-4 text-center text-sm text-gray-500">
         © 2025 - Éditeur SVG React

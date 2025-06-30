@@ -1,10 +1,11 @@
 import { create } from 'zustand'
-import type { SvgDocument, SvgRect } from './types'
+import type { SvgDocument, SvgShape, SvgRect } from './types'
 
 type SvgActions = {
   addRect: () => void
   selectShape: (id: string | null) => void
   removeSelected: () => void
+  updateShape: (id: string, patch: Partial<SvgShape>) => void // Ajout
 }
 
 const initialDoc: SvgDocument = {
@@ -37,5 +38,10 @@ export const useSvgStore = create<SvgDocument & SvgActions>((set, get) => ({
       shapes: shapes.filter((s) => s.id !== selectedId),
       selectedId: null,
     })
+  },
+  updateShape: (id, patch) => {
+    set((state) => ({
+      shapes: state.shapes.map((s) => (s.id === id ? { ...s, ...patch } : s)),
+    }))
   },
 }))
