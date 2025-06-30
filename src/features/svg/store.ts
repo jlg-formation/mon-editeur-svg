@@ -1,11 +1,16 @@
 import { create } from 'zustand'
 import type { SvgDocument, SvgShape, SvgRect } from './types'
 
+interface SvgUiState {
+  showGrid: boolean
+}
+
 type SvgActions = {
   addRect: () => void
   selectShape: (id: string | null) => void
   removeSelected: () => void
   updateShape: (id: string, patch: Partial<SvgShape>) => void // Ajout
+  toggleGrid: () => void
 }
 
 const initialDoc: SvgDocument = {
@@ -13,8 +18,9 @@ const initialDoc: SvgDocument = {
   selectedId: null,
 }
 
-export const useSvgStore = create<SvgDocument & SvgActions>((set, get) => ({
+export const useSvgStore = create<SvgDocument & SvgUiState & SvgActions>((set, get) => ({
   ...initialDoc,
+  showGrid: false,
   addRect: () => {
     const newRect: SvgRect = {
       id: crypto.randomUUID(),
@@ -44,4 +50,5 @@ export const useSvgStore = create<SvgDocument & SvgActions>((set, get) => ({
       shapes: state.shapes.map((s) => (s.id === id ? { ...s, ...patch } : s)),
     }))
   },
+  toggleGrid: () => set((state) => ({ showGrid: !state.showGrid })),
 }))

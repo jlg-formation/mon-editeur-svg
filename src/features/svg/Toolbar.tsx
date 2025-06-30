@@ -4,6 +4,8 @@ export default function Toolbar() {
   const addRect = useSvgStore((s) => s.addRect)
   const removeSelected = useSvgStore((s) => s.removeSelected)
   const selectedId = useSvgStore((s) => s.selectedId)
+  const toggleGrid = useSvgStore((s) => s.toggleGrid)
+  const showGrid = useSvgStore((s) => s.showGrid)
 
   return (
     <div className="flex gap-2">
@@ -19,6 +21,12 @@ export default function Toolbar() {
         disabled={!selectedId}
       >
         Supprimer la sélection
+      </button>
+      <button
+        className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300"
+        onClick={toggleGrid}
+      >
+        {showGrid ? 'Masquer' : 'Afficher'} la grille
       </button>
     </div>
   )

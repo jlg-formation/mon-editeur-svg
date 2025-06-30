@@ -11,7 +11,7 @@
 
 ## 2. Rendu du canevas SVG
 
-- [ ] Afficher la grille de fond (optionnelle, toggle)
+ - [x] Afficher la grille de fond (optionnelle, toggle)
 - [ ] Ajouter le zoom et le pan (déplacement du canevas)
 
 ---
