@@ -2,7 +2,8 @@
 
 ## 1. Structure des types et du store
 
-- [x] Définir les types TypeScript pour toutes les formes SVG (ellipse, cercle, ligne, polygone, texte…)
+- [x] Définir les types TypeScript pour toutes les formes SVG (ellipse, cercle,
+      ligne, polygone, texte…)
 - [x] Structurer le store Zustand pour :
   - L’undo/redo (état d’historique)
   - Les actions liées au document (import/export/new)
@@ -11,7 +12,7 @@
 
 ## 2. Rendu du canevas SVG
 
- - [x] Afficher la grille de fond (optionnelle, toggle)
+- [x] Afficher la grille de fond (optionnelle, toggle)
 - [ ] Ajouter le zoom et le pan (déplacement du canevas)
 
 ---
@@ -32,8 +33,10 @@
 
 ## 4. Panneau de propriétés
 
-- [ ] Affichage dynamique des propriétés selon le type de forme (ellipse, cercle, ligne, polygone, texte…)
-- [ ] Édition des propriétés avancées : opacité, bordure, texte/mise en forme pour le texte SVG, etc.
+- [ ] Affichage dynamique des propriétés selon le type de forme (ellipse,
+      cercle, ligne, polygone, texte…)
+- [ ] Édition des propriétés avancées : opacité, bordure, texte/mise en forme
+      pour le texte SVG, etc.
 
 ---
 
@@ -63,14 +66,16 @@
 ## 7. Copier/Coller et duplication
 
 - [ ] Copier/coller interne (Ctrl+C/Ctrl+V sur les formes)
-- [ ] Copier/coller SVG (exporter code SVG d’une forme/canevas, import par collage)
+- [ ] Copier/coller SVG (exporter code SVG d’une forme/canevas, import par
+      collage)
 - [ ] Duplication rapide d’une forme
 
 ---
 
 ## 8. Fonctions avancées de mise en page
 
-- [ ] Alignement et distribution des formes sélectionnées (gauche, droite, centre, haut, bas, espacement égal, etc.)
+- [ ] Alignement et distribution des formes sélectionnées (gauche, droite,
+      centre, haut, bas, espacement égal, etc.)
 - [ ] Guides et grille magnétique :
   - Affichage optionnel des guides
   - Snap sur grille/guides
@@ -114,3 +119,8 @@
 - [ ] Export PNG/PDF/JPEG (via canvas ou serveur)
 - [ ] Publication directe (GitHub Pages, partage de lien)
 - [ ] PWA / mode déconnecté
+
+## 13. Misc
+
+- [ ] Eviter les Cumulative Layout Shift pour les boutons. Faire que les boutons
+      dans le header soit a largeur fixe.
