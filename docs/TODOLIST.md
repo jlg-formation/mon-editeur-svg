@@ -3,7 +3,7 @@
 ## 1. Structure des types et du store
 
 - [x] Définir les types TypeScript pour toutes les formes SVG (ellipse, cercle, ligne, polygone, texte…)
-- [ ] Structurer le store Zustand pour :
+- [x] Structurer le store Zustand pour :
   - L’undo/redo (état d’historique)
   - Les actions liées au document (import/export/new)
 
