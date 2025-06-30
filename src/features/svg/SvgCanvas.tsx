@@ -5,6 +5,7 @@ export default function SvgCanvas() {
   const shapes = useSvgStore((s) => s.shapes)
   const selectedId = useSvgStore((s) => s.selectedId)
   const selectShape = useSvgStore((s) => s.selectShape)
+  const showGrid = useSvgStore((s) => s.showGrid)
 
   return (
     <svg
@@ -13,6 +14,16 @@ export default function SvgCanvas() {
       className="border border-gray-300 bg-gray-100"
       tabIndex={0}
     >
+      {showGrid && (
+        <>
+          <defs>
+            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+              <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#d1d5db" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+        </>
+      )}
       {shapes.map((shape) => {
         if (shape.type === 'rect') {
           const rect = shape as SvgRect
