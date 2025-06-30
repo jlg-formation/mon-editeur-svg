@@ -23,6 +23,8 @@ Please respect the specifications:
 
 ## Update the TODO LIST
 
+### Be proactive
+
 Do not hesitate to be :
 
 - proactive
@@ -33,5 +35,12 @@ Do not hesitate to be :
 When you contribute to the project, do not hesitate to add new items in the
 [todo list](./docs/TODOLIST.md) in order for the project to go beyond the
 objectives.
+
+### Tell what you have done
+
+When you think a todo list item (for instance `task X` is complete, please
+indicate by updating the [todo list](./docs/TODOLIST.md) like this:
+
+- [x] task X
 
 ---
