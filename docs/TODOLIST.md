@@ -21,7 +21,7 @@
 ## 3. Ajout et gestion des formes
 
 - [x] Ajouter les boutons d’ajout pour ellipse, cercle, ligne, polygone, texte
-- [ ] Permettre la sélection multiple (Maj+clic, rectangle de sélection)
+- [x] Permettre la sélection multiple (Maj+clic, rectangle de sélection)
 - [ ] Permettre l’ordre d’empilement (monter/descendre dans la pile)
 - [ ] Permettre la manipulation directe (drag, resize, rotate) :
   - Poignées de redimensionnement
@@ -137,3 +137,4 @@
       to fit) (avec raccourci clavier Shift+1). Faire un troisieme bouton pour
       que le zoom soit le plus élevé mais que l'utilisateur voit sa selection
       courante (zoom to fit selection) (Shift+2).
+- [ ] Ajouter un mode plein écran pour le canevas

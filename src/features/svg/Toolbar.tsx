@@ -29,7 +29,7 @@ export default function Toolbar() {
   const addPolygon = useSvgStore((s) => s.addPolygon)
   const addText = useSvgStore((s) => s.addText)
   const removeSelected = useSvgStore((s) => s.removeSelected)
-  const selectedId = useSvgStore((s) => s.selectedId)
+  const selectedIds = useSvgStore((s) => s.selectedIds)
   const toggleGrid = useSvgStore((s) => s.toggleGrid)
   const showGrid = useSvgStore((s) => s.showGrid)
   const zoom = useSvgStore((s) => s.zoom)
@@ -38,7 +38,7 @@ export default function Toolbar() {
   const setPan = useSvgStore((s) => s.setPan)
   const shapes = useSvgStore((s) => s.shapes)
 
-  const selectedShape = shapes.find((s) => s.id === selectedId) || null
+  const selectedShape = shapes.find((s) => s.id === selectedIds[0]) || null
 
   return (
     <div className="flex gap-2">
@@ -87,7 +87,7 @@ export default function Toolbar() {
       <button
         className="rounded bg-red-500 px-2 py-1 text-white hover:bg-red-600 disabled:opacity-50"
         onClick={removeSelected}
-        disabled={!selectedId}
+        disabled={selectedIds.length === 0}
         title="Supprimer la sélection"
       >
         <Trash className="h-5 w-5" />

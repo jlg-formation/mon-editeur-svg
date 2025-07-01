@@ -12,8 +12,8 @@ import { applyZoom } from './utils'
 
 export default function SvgCanvas() {
   const shapes = useSvgStore((s) => s.shapes)
-  const selectedId = useSvgStore((s) => s.selectedId)
-  const selectShape = useSvgStore((s) => s.selectShape)
+  const selectedIds = useSvgStore((s) => s.selectedIds)
+  const toggle = useSvgStore((s) => s.toggleShapeSelection)
   const showGrid = useSvgStore((s) => s.showGrid)
   const zoom = useSvgStore((s) => s.zoom)
   const setZoom = useSvgStore((s) => s.setZoom)
@@ -22,6 +22,7 @@ export default function SvgCanvas() {
 
   const [panning, setPanning] = useState(false)
   const [lastPos, setLastPos] = useState<{ x: number; y: number } | null>(null)
+  const [hoverId, setHoverId] = useState<string | null>(null)
 
   const svgRef = useRef<SVGSVGElement | null>(null)
 
@@ -94,6 +95,8 @@ export default function SvgCanvas() {
           switch (shape.type) {
             case 'rect': {
               const rect = shape as SvgRect
+              const isSelected = selectedIds.includes(rect.id)
+              const isHover = hoverId === rect.id
               return (
                 <rect
                   key={rect.id}
@@ -102,15 +105,19 @@ export default function SvgCanvas() {
                   width={rect.width}
                   height={rect.height}
                   fill={rect.fill}
-                  stroke={rect.id === selectedId ? '#2563eb' : '#444'}
-                  strokeWidth={rect.id === selectedId ? 3 : 1}
-                  onClick={() => selectShape(rect.id)}
+                  stroke={isSelected ? '#2563eb' : isHover ? '#94a3b8' : '#444'}
+                  strokeWidth={isSelected ? 3 : 1}
+                  onMouseEnter={() => setHoverId(rect.id)}
+                  onMouseLeave={() => setHoverId(null)}
+                  onClick={() => toggle(rect.id)}
                   style={{ cursor: 'pointer' }}
                 />
               )
             }
             case 'circle': {
               const c = shape as SvgCircle
+              const isSelected = selectedIds.includes(c.id)
+              const isHover = hoverId === c.id
               return (
                 <circle
                   key={c.id}
@@ -118,15 +125,19 @@ export default function SvgCanvas() {
                   cy={c.y}
                   r={c.radius}
                   fill={c.fill}
-                  stroke={c.id === selectedId ? '#2563eb' : '#444'}
-                  strokeWidth={c.id === selectedId ? 3 : 1}
-                  onClick={() => selectShape(c.id)}
+                  stroke={isSelected ? '#2563eb' : isHover ? '#94a3b8' : '#444'}
+                  strokeWidth={isSelected ? 3 : 1}
+                  onMouseEnter={() => setHoverId(c.id)}
+                  onMouseLeave={() => setHoverId(null)}
+                  onClick={() => toggle(c.id)}
                   style={{ cursor: 'pointer' }}
                 />
               )
             }
             case 'ellipse': {
               const el = shape as SvgEllipse
+              const isSelected = selectedIds.includes(el.id)
+              const isHover = hoverId === el.id
               return (
                 <ellipse
                   key={el.id}
@@ -135,15 +146,19 @@ export default function SvgCanvas() {
                   rx={el.rx}
                   ry={el.ry}
                   fill={el.fill}
-                  stroke={el.id === selectedId ? '#2563eb' : '#444'}
-                  strokeWidth={el.id === selectedId ? 3 : 1}
-                  onClick={() => selectShape(el.id)}
+                  stroke={isSelected ? '#2563eb' : isHover ? '#94a3b8' : '#444'}
+                  strokeWidth={isSelected ? 3 : 1}
+                  onMouseEnter={() => setHoverId(el.id)}
+                  onMouseLeave={() => setHoverId(null)}
+                  onClick={() => toggle(el.id)}
                   style={{ cursor: 'pointer' }}
                 />
               )
             }
             case 'line': {
               const ln = shape as SvgLine
+              const isSelected = selectedIds.includes(ln.id)
+              const isHover = hoverId === ln.id
               return (
                 <line
                   key={ln.id}
@@ -151,9 +166,13 @@ export default function SvgCanvas() {
                   y1={ln.y}
                   x2={ln.x2}
                   y2={ln.y2}
-                  stroke={ln.fill}
-                  strokeWidth={ln.id === selectedId ? 3 : 1}
-                  onClick={() => selectShape(ln.id)}
+                  stroke={
+                    isSelected ? '#2563eb' : isHover ? '#94a3b8' : ln.fill
+                  }
+                  strokeWidth={isSelected ? 3 : 1}
+                  onMouseEnter={() => setHoverId(ln.id)}
+                  onMouseLeave={() => setHoverId(null)}
+                  onClick={() => toggle(ln.id)}
                   style={{ cursor: 'pointer' }}
                 />
               )
@@ -161,20 +180,26 @@ export default function SvgCanvas() {
             case 'polygon': {
               const poly = shape as SvgPolygon
               const points = poly.points.map((p) => `${p.x},${p.y}`).join(' ')
+              const isSelected = selectedIds.includes(poly.id)
+              const isHover = hoverId === poly.id
               return (
                 <polygon
                   key={poly.id}
                   points={points}
                   fill={poly.fill}
-                  stroke={poly.id === selectedId ? '#2563eb' : '#444'}
-                  strokeWidth={poly.id === selectedId ? 3 : 1}
-                  onClick={() => selectShape(poly.id)}
+                  stroke={isSelected ? '#2563eb' : isHover ? '#94a3b8' : '#444'}
+                  strokeWidth={isSelected ? 3 : 1}
+                  onMouseEnter={() => setHoverId(poly.id)}
+                  onMouseLeave={() => setHoverId(null)}
+                  onClick={() => toggle(poly.id)}
                   style={{ cursor: 'pointer' }}
                 />
               )
             }
             case 'text': {
               const t = shape as SvgText
+              const isSelected = selectedIds.includes(t.id)
+              const isHover = hoverId === t.id
               return (
                 <text
                   key={t.id}
@@ -182,7 +207,11 @@ export default function SvgCanvas() {
                   y={t.y}
                   fill={t.fill}
                   fontSize="16"
-                  onClick={() => selectShape(t.id)}
+                  stroke={isSelected ? '#2563eb' : isHover ? '#94a3b8' : 'none'}
+                  strokeWidth={isSelected ? 1 : 0}
+                  onMouseEnter={() => setHoverId(t.id)}
+                  onMouseLeave={() => setHoverId(null)}
+                  onClick={() => toggle(t.id)}
                   style={{ cursor: 'pointer' }}
                 >
                   {t.text}

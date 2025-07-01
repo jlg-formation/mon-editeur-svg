@@ -57,5 +57,5 @@ export type SvgShape =
 
 export interface SvgDocument {
   shapes: SvgShape[]
-  selectedId: string | null
+  selectedIds: string[]
 }
