@@ -130,3 +130,9 @@
       zoom et dérange l'utilisateur. Le centre du zoom devrait être la souris.
       Si on zoome avec le bouton, le centre du zoom devrait etre le centre du
       canvas.
+- [ ] Faire un bouton pour remettre le Zoom a 100% (avec raccourci clavier
+      Ctrl+0). Faire un deuxieme bouton pour mettre le zoom le plus élevé mais
+      de facon a ce que l'utilisateur voit tous les objets dans le canvas (Zoom
+      to fit) (avec raccourci clavier Shift+1). Faire un troisieme bouton pour
+      que le zoom soit le plus élevé mais que l'utilisateur voit sa selection
+      courante (zoom to fit selection) (Shift+2).
