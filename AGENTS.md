@@ -25,16 +25,18 @@ Please respect the specifications:
 
 ### Be proactive
 
-Do not hesitate to be :
+After reading the [Functional](./docs/SPECIFICATIONS_FONCTIONNELLES.md) and
+[Technical](./docs/SPECIFICATIONS_TECHNIQUES.md) specifications, please give me
+any idea that you think would be good for the entire project, not necessarely
+related to the subject of this task. Do not hesitate to be :
 
 - proactive
 - take initiative
 - be a driving force
 - bring new idea to the table
 
-When you contribute to the project, do not hesitate to add new ideas in the
-[todo list](./docs/TODOLIST.md) in order for the project to go beyond the
-objectives.
+Add new ideas in the [todo list](./docs/TODOLIST.md) in order for the project to
+be better than expected.
 
 ### Tell what you have done
 
