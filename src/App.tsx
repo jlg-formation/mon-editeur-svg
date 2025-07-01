@@ -1,17 +1,22 @@
 import { useEffect } from 'react'
 import Toolbar from './features/svg/Toolbar'
 import SvgCanvas from './features/svg/SvgCanvas'
+import OutlinePanel from './features/svg/OutlinePanel'
 import ShapePropertiesPanel from './features/svg/ShapePropertiesPanel'
 import { useSvgStore } from './features/svg/store'
-import { computeFitView, getShapeBounds, getShapesBounds } from './features/svg/utils'
+import {
+  computeFitView,
+  getShapeBounds,
+  getShapesBounds,
+} from './features/svg/utils'
 
 export default function App() {
   const shapes = useSvgStore((s) => s.shapes)
-  const selectedId = useSvgStore((s) => s.selectedId)
+  const selectedIds = useSvgStore((s) => s.selectedIds)
   const setZoom = useSvgStore((s) => s.setZoom)
   const setPan = useSvgStore((s) => s.setPan)
 
-  const selectedShape = shapes.find((s) => s.id === selectedId) || null
+  const selectedShape = shapes.find((s) => s.id === selectedIds[0]) || null
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -22,7 +27,11 @@ export default function App() {
       } else if (e.shiftKey && e.key === '1') {
         e.preventDefault()
         if (shapes.length > 0) {
-          const { zoom, pan } = computeFitView(getShapesBounds(shapes), 400, 300)
+          const { zoom, pan } = computeFitView(
+            getShapesBounds(shapes),
+            400,
+            300,
+          )
           setZoom(zoom)
           setPan(pan)
         }
@@ -50,6 +59,7 @@ export default function App() {
         <Toolbar />
       </header>
       <main className="flex flex-1 items-stretch justify-center">
+        <OutlinePanel />
         <div className="flex items-center rounded bg-white p-4 shadow">
           <SvgCanvas />
         </div>

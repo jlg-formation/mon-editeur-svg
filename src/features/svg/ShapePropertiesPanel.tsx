@@ -3,10 +3,10 @@ import type { SvgRect } from './types'
 
 export default function ShapePropertiesPanel() {
   const shapes = useSvgStore((s) => s.shapes)
-  const selectedId = useSvgStore((s) => s.selectedId)
+  const selectedIds = useSvgStore((s) => s.selectedIds)
   const updateShape = useSvgStore((s) => s.updateShape)
 
-  const selected = shapes.find((s) => s.id === selectedId)
+  const selected = shapes.find((s) => s.id === selectedIds[0])
 
   if (!selected) {
     return (

@@ -23,9 +23,9 @@ type SvgActions = {
   addLine: () => void
   addPolygon: () => void
   addText: () => void
-  selectShape: (id: string | null) => void
+  toggleShapeSelection: (id: string) => void
   removeSelected: () => void
-  updateShape: (id: string, patch: Partial<SvgShape>) => void // Ajout
+  updateShape: (id: string, patch: Partial<SvgShape>) => void
   toggleGrid: () => void
   setZoom: (zoom: number) => void
   setPan: (pan: { x: number; y: number }) => void
@@ -33,7 +33,7 @@ type SvgActions = {
 
 const initialDoc: SvgDocument = {
   shapes: [],
-  selectedId: null,
+  selectedIds: [],
 }
 
 export const useSvgStore = create<SvgDocument & SvgUiState & SvgActions>(
@@ -54,7 +54,7 @@ export const useSvgStore = create<SvgDocument & SvgUiState & SvgActions>(
       }
       set((state) => ({
         shapes: [...state.shapes, newRect],
-        selectedId: newRect.id,
+        selectedIds: [newRect.id],
       }))
     },
     addCircle: () => {
@@ -68,7 +68,7 @@ export const useSvgStore = create<SvgDocument & SvgUiState & SvgActions>(
       }
       set((state) => ({
         shapes: [...state.shapes, newCircle],
-        selectedId: newCircle.id,
+        selectedIds: [newCircle.id],
       }))
     },
     addEllipse: () => {
@@ -83,7 +83,7 @@ export const useSvgStore = create<SvgDocument & SvgUiState & SvgActions>(
       }
       set((state) => ({
         shapes: [...state.shapes, newEllipse],
-        selectedId: newEllipse.id,
+        selectedIds: [newEllipse.id],
       }))
     },
     addLine: () => {
@@ -98,7 +98,7 @@ export const useSvgStore = create<SvgDocument & SvgUiState & SvgActions>(
       }
       set((state) => ({
         shapes: [...state.shapes, newLine],
-        selectedId: newLine.id,
+        selectedIds: [newLine.id],
       }))
     },
     addPolygon: () => {
@@ -118,7 +118,7 @@ export const useSvgStore = create<SvgDocument & SvgUiState & SvgActions>(
       }
       set((state) => ({
         shapes: [...state.shapes, newPolygon],
-        selectedId: newPolygon.id,
+        selectedIds: [newPolygon.id],
       }))
     },
     addText: () => {
@@ -132,16 +132,21 @@ export const useSvgStore = create<SvgDocument & SvgUiState & SvgActions>(
       }
       set((state) => ({
         shapes: [...state.shapes, newText],
-        selectedId: newText.id,
+        selectedIds: [newText.id],
       }))
     },
-    selectShape: (id) => set({ selectedId: id }),
+    toggleShapeSelection: (id) =>
+      set((state) => ({
+        selectedIds: state.selectedIds.includes(id)
+          ? state.selectedIds.filter((sid) => sid !== id)
+          : [...state.selectedIds, id],
+      })),
     removeSelected: () => {
-      const { selectedId, shapes } = get()
-      if (!selectedId) return
+      const { selectedIds, shapes } = get()
+      if (selectedIds.length === 0) return
       set({
-        shapes: shapes.filter((s) => s.id !== selectedId),
-        selectedId: null,
+        shapes: shapes.filter((s) => !selectedIds.includes(s.id)),
+        selectedIds: [],
       })
     },
     updateShape: (id, patch) => {

@@ -11,11 +11,13 @@ export interface DocumentActions {
   exportDocument: () => string
 }
 
-const emptyDoc: SvgDocument = { shapes: [], selectedId: null }
+const emptyDoc: SvgDocument = { shapes: [], selectedIds: [] }
 
-export const useDocumentStore = create<DocumentState & DocumentActions>((set, get) => ({
-  document: emptyDoc,
-  newDocument: () => set({ document: emptyDoc }),
-  importDocument: (doc) => set({ document: doc }),
-  exportDocument: () => JSON.stringify(get().document),
-}))
+export const useDocumentStore = create<DocumentState & DocumentActions>(
+  (set, get) => ({
+    document: emptyDoc,
+    newDocument: () => set({ document: emptyDoc }),
+    importDocument: (doc) => set({ document: doc }),
+    exportDocument: () => JSON.stringify(get().document),
+  }),
+)

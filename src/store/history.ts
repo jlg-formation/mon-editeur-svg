@@ -14,7 +14,7 @@ export interface HistoryActions {
   reset: (doc?: SvgDocument) => void
 }
 
-const emptyDoc: SvgDocument = { shapes: [], selectedId: null }
+const emptyDoc: SvgDocument = { shapes: [], selectedIds: [] }
 
 export const useHistoryStore = create<HistoryState & HistoryActions>((set) => ({
   past: [],
