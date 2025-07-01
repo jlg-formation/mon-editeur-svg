@@ -1,4 +1,5 @@
 import { useSvgStore } from './store'
+import { applyZoom } from './utils'
 
 export default function Toolbar() {
   const addRect = useSvgStore((s) => s.addRect)
@@ -8,6 +9,8 @@ export default function Toolbar() {
   const showGrid = useSvgStore((s) => s.showGrid)
   const zoom = useSvgStore((s) => s.zoom)
   const setZoom = useSvgStore((s) => s.setZoom)
+  const pan = useSvgStore((s) => s.pan)
+  const setPan = useSvgStore((s) => s.setPan)
 
   return (
     <div className="flex gap-2">
@@ -32,13 +35,27 @@ export default function Toolbar() {
       </button>
       <button
         className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300"
-        onClick={() => setZoom(zoom * 1.1)}
+        onClick={() => {
+          const { zoom: z, pan: p } = applyZoom(zoom, pan, 1.1, {
+            x: 200,
+            y: 150,
+          })
+          setZoom(z)
+          setPan(p)
+        }}
       >
         Zoom +
       </button>
       <button
         className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300"
-        onClick={() => setZoom(zoom * 0.9)}
+        onClick={() => {
+          const { zoom: z, pan: p } = applyZoom(zoom, pan, 0.9, {
+            x: 200,
+            y: 150,
+          })
+          setZoom(z)
+          setPan(p)
+        }}
       >
         Zoom -
       </button>

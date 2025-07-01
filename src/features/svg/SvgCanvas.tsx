@@ -1,6 +1,7 @@
 import { useSvgStore } from './store'
 import type { SvgRect } from './types'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import { applyZoom } from './utils'
 
 export default function SvgCanvas() {
   const shapes = useSvgStore((s) => s.shapes)
@@ -15,11 +16,17 @@ export default function SvgCanvas() {
   const [panning, setPanning] = useState(false)
   const [lastPos, setLastPos] = useState<{ x: number; y: number } | null>(null)
 
+  const svgRef = useRef<SVGSVGElement | null>(null)
+
   const onWheel = (e: React.WheelEvent<SVGSVGElement>) => {
     e.preventDefault()
+    if (!svgRef.current) return
+    const rect = svgRef.current.getBoundingClientRect()
+    const center = { x: e.clientX - rect.left, y: e.clientY - rect.top }
     const factor = e.deltaY < 0 ? 1.1 : 0.9
-    const newZoom = Math.min(5, Math.max(0.2, zoom * factor))
+    const { zoom: newZoom, pan: newPan } = applyZoom(zoom, pan, factor, center)
     setZoom(newZoom)
+    setPan(newPan)
   }
 
   const onPointerDown = (e: React.PointerEvent<SVGSVGElement>) => {
@@ -44,6 +51,7 @@ export default function SvgCanvas() {
 
   return (
     <svg
+      ref={svgRef}
       width={400}
       height={300}
       className="border border-gray-300 bg-gray-100"

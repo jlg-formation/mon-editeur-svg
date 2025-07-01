@@ -125,7 +125,7 @@
 
 - [ ] Eviter les Cumulative Layout Shift pour les boutons. Faire que les boutons
       dans le header soit a largeur fixe.
-- [ ] Quand on zoom avec la souris, le point sous le curseur ne devrait pas
+- [x] Quand on zoom avec la souris, le point sous le curseur ne devrait pas
       bouger. Actuellement il y a une sorte de translation qui accompagne le
       zoom et dérange l'utilisateur. Le centre du zoom devrait être la souris.
       Si on zoome avec le bouton, le centre du zoom devrait etre le centre du
