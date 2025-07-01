@@ -32,7 +32,7 @@ Do not hesitate to be :
 - be a driving force
 - bring new idea to the table
 
-When you contribute to the project, do not hesitate to add new items in the
+When you contribute to the project, do not hesitate to add new ideas in the
 [todo list](./docs/TODOLIST.md) in order for the project to go beyond the
 objectives.
 
