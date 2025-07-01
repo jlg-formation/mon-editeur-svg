@@ -20,7 +20,7 @@
 
 ## 3. Ajout et gestion des formes
 
-- [ ] Ajouter les boutons d’ajout pour ellipse, cercle, ligne, polygone, texte
+- [x] Ajouter les boutons d’ajout pour ellipse, cercle, ligne, polygone, texte
 - [ ] Permettre la sélection multiple (Maj+clic, rectangle de sélection)
 - [ ] Permettre l’ordre d’empilement (monter/descendre dans la pile)
 - [ ] Permettre la manipulation directe (drag, resize, rotate) :
