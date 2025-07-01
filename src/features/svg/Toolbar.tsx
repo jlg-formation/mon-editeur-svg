@@ -1,5 +1,5 @@
 import { useSvgStore } from './store'
-import { applyZoom } from './utils'
+import { applyZoom, computeFitView, getShapeBounds, getShapesBounds } from './utils'
 
 export default function Toolbar() {
   const addRect = useSvgStore((s) => s.addRect)
@@ -11,6 +11,9 @@ export default function Toolbar() {
   const setZoom = useSvgStore((s) => s.setZoom)
   const pan = useSvgStore((s) => s.pan)
   const setPan = useSvgStore((s) => s.setPan)
+  const shapes = useSvgStore((s) => s.shapes)
+
+  const selectedShape = shapes.find((s) => s.id === selectedId) || null
 
   return (
     <div className="flex gap-2">
@@ -58,6 +61,46 @@ export default function Toolbar() {
         }}
       >
         Zoom -
+      </button>
+      <button
+        className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300"
+        onClick={() => {
+          setZoom(1)
+          setPan({ x: 0, y: 0 })
+        }}
+      >
+        Zoom 100%
+      </button>
+      <button
+        className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300"
+        onClick={() => {
+          if (shapes.length === 0) return
+          const { zoom: z, pan: p } = computeFitView(
+            getShapesBounds(shapes),
+            400,
+            300,
+          )
+          setZoom(z)
+          setPan(p)
+        }}
+      >
+        Tout voir
+      </button>
+      <button
+        className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300"
+        onClick={() => {
+          if (!selectedShape) return
+          const { zoom: z, pan: p } = computeFitView(
+            getShapeBounds(selectedShape),
+            400,
+            300,
+          )
+          setZoom(z)
+          setPan(p)
+        }}
+        disabled={!selectedShape}
+      >
+        Voir sélection
       </button>
       <span className="flex items-center text-sm text-gray-600">
         {Math.round(zoom * 100)}%
