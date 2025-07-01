@@ -14,6 +14,15 @@ Just do:
 pnpm run format
 ```
 
+## Linter
+
+Before commit, do not forget to eslint the code with the project settings. Just
+do:
+
+```
+pnpm run lint
+```
+
 ## Specifications
 
 Please respect the specifications:
