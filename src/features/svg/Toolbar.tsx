@@ -1,8 +1,18 @@
 import { useSvgStore } from './store'
-import { applyZoom, computeFitView, getShapeBounds, getShapesBounds } from './utils'
+import {
+  applyZoom,
+  computeFitView,
+  getShapeBounds,
+  getShapesBounds,
+} from './utils'
 
 export default function Toolbar() {
   const addRect = useSvgStore((s) => s.addRect)
+  const addCircle = useSvgStore((s) => s.addCircle)
+  const addEllipse = useSvgStore((s) => s.addEllipse)
+  const addLine = useSvgStore((s) => s.addLine)
+  const addPolygon = useSvgStore((s) => s.addPolygon)
+  const addText = useSvgStore((s) => s.addText)
   const removeSelected = useSvgStore((s) => s.removeSelected)
   const selectedId = useSvgStore((s) => s.selectedId)
   const toggleGrid = useSvgStore((s) => s.toggleGrid)
@@ -22,6 +32,36 @@ export default function Toolbar() {
         onClick={addRect}
       >
         Ajouter un rectangle
+      </button>
+      <button
+        className="rounded bg-yellow-400 px-2 py-1 hover:bg-yellow-500"
+        onClick={addCircle}
+      >
+        Ajouter un cercle
+      </button>
+      <button
+        className="rounded bg-yellow-400 px-2 py-1 hover:bg-yellow-500"
+        onClick={addEllipse}
+      >
+        Ajouter une ellipse
+      </button>
+      <button
+        className="rounded bg-yellow-400 px-2 py-1 hover:bg-yellow-500"
+        onClick={addLine}
+      >
+        Ajouter une ligne
+      </button>
+      <button
+        className="rounded bg-yellow-400 px-2 py-1 hover:bg-yellow-500"
+        onClick={addPolygon}
+      >
+        Ajouter un polygone
+      </button>
+      <button
+        className="rounded bg-yellow-400 px-2 py-1 hover:bg-yellow-500"
+        onClick={addText}
+      >
+        Ajouter un texte
       </button>
       <button
         className="rounded bg-red-500 px-2 py-1 text-white hover:bg-red-600 disabled:opacity-50"
