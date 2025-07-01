@@ -34,10 +34,12 @@
 
 ## 4. Panneau de propriétés
 
-- [ ] Affichage dynamique des propriétés selon le type de forme (ellipse,
+- [x] Affichage dynamique des propriétés selon le type de forme (ellipse,
       cercle, ligne, polygone, texte…)
 - [ ] Édition des propriétés avancées : opacité, bordure, texte/mise en forme
       pour le texte SVG, etc.
+- [ ] Ajouter une palette de couleurs prédéfinies pour accélérer le choix des
+      couleurs
 
 ---
 
