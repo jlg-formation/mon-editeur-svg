@@ -5,6 +5,21 @@ import {
   getShapeBounds,
   getShapesBounds,
 } from './utils'
+import {
+  Circle,
+  Egg,
+  Focus,
+  LayoutGrid,
+  Maximize,
+  Slash,
+  Square,
+  Target,
+  Trash,
+  Triangle,
+  Type,
+  ZoomIn,
+  ZoomOut,
+} from 'lucide-react'
 
 export default function Toolbar() {
   const addRect = useSvgStore((s) => s.addRect)
@@ -30,51 +45,59 @@ export default function Toolbar() {
       <button
         className="rounded bg-yellow-400 px-2 py-1 hover:bg-yellow-500"
         onClick={addRect}
+        title="Ajouter un rectangle"
       >
-        Ajouter un rectangle
+        <Square className="h-5 w-5" />
       </button>
       <button
         className="rounded bg-yellow-400 px-2 py-1 hover:bg-yellow-500"
         onClick={addCircle}
+        title="Ajouter un cercle"
       >
-        Ajouter un cercle
+        <Circle className="h-5 w-5" />
       </button>
       <button
         className="rounded bg-yellow-400 px-2 py-1 hover:bg-yellow-500"
         onClick={addEllipse}
+        title="Ajouter une ellipse"
       >
-        Ajouter une ellipse
+        <Egg className="h-5 w-5" />
       </button>
       <button
         className="rounded bg-yellow-400 px-2 py-1 hover:bg-yellow-500"
         onClick={addLine}
+        title="Ajouter une ligne"
       >
-        Ajouter une ligne
+        <Slash className="h-5 w-5" />
       </button>
       <button
         className="rounded bg-yellow-400 px-2 py-1 hover:bg-yellow-500"
         onClick={addPolygon}
+        title="Ajouter un polygone"
       >
-        Ajouter un polygone
+        <Triangle className="h-5 w-5" />
       </button>
       <button
         className="rounded bg-yellow-400 px-2 py-1 hover:bg-yellow-500"
         onClick={addText}
+        title="Ajouter un texte"
       >
-        Ajouter un texte
+        <Type className="h-5 w-5" />
       </button>
       <button
         className="rounded bg-red-500 px-2 py-1 text-white hover:bg-red-600 disabled:opacity-50"
         onClick={removeSelected}
         disabled={!selectedId}
+        title="Supprimer la sélection"
       >
-        Supprimer la sélection
+        <Trash className="h-5 w-5" />
       </button>
       <button
         className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300"
         onClick={toggleGrid}
+        title={showGrid ? 'Masquer la grille' : 'Afficher la grille'}
       >
-        {showGrid ? 'Masquer' : 'Afficher'} la grille
+        <LayoutGrid className="h-5 w-5" />
       </button>
       <button
         className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300"
@@ -86,8 +109,9 @@ export default function Toolbar() {
           setZoom(z)
           setPan(p)
         }}
+        title="Zoomer"
       >
-        Zoom +
+        <ZoomIn className="h-5 w-5" />
       </button>
       <button
         className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300"
@@ -99,8 +123,9 @@ export default function Toolbar() {
           setZoom(z)
           setPan(p)
         }}
+        title="Dézoomer"
       >
-        Zoom -
+        <ZoomOut className="h-5 w-5" />
       </button>
       <button
         className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300"
@@ -108,8 +133,9 @@ export default function Toolbar() {
           setZoom(1)
           setPan({ x: 0, y: 0 })
         }}
+        title="Zoom 100%"
       >
-        Zoom 100%
+        <Target className="h-5 w-5" />
       </button>
       <button
         className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300"
@@ -123,8 +149,9 @@ export default function Toolbar() {
           setZoom(z)
           setPan(p)
         }}
+        title="Tout voir"
       >
-        Tout voir
+        <Maximize className="h-5 w-5" />
       </button>
       <button
         className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300"
@@ -139,8 +166,9 @@ export default function Toolbar() {
           setPan(p)
         }}
         disabled={!selectedShape}
+        title="Voir sélection"
       >
-        Voir sélection
+        <Focus className="h-5 w-5" />
       </button>
       <span className="flex items-center text-sm text-gray-600">
         {Math.round(zoom * 100)}%

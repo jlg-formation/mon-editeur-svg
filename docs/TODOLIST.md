@@ -120,6 +120,7 @@
 - [ ] Export PNG/PDF/JPEG (via canvas ou serveur)
 - [ ] Publication directe (GitHub Pages, partage de lien)
 - [ ] PWA / mode déconnecté
+- [ ] Éditeur de code SVG brut synchronisé avec le canevas
 
 ## 13. Misc
 
