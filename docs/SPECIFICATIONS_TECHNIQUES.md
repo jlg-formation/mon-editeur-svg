@@ -11,7 +11,7 @@
 | Structure des composants | Feature-based                   |
 | Undo/Redo                | Librairie dédiée (ex: use-undo) |
 | Tests                    | Vitest                          |
-| Icônes                   | Font Awesome                    |
+| Icônes                   | Lucide                          |
 | Outil de build           | Vite                            |
 | Gestion des assets       | Dossier `public/`               |
 
@@ -29,7 +29,7 @@
 │   ├── components/
 │   ├── store/            # Zustand stores
 │   ├── hooks/
-│   ├── icons/            # Font Awesome wrappers éventuels
+│   ├── icons/            # Icons wrappers éventuels
 │   ├── styles/           # (si customisation Tailwind)
 │   ├── App.tsx
 │   └── main.tsx
@@ -77,7 +77,8 @@
 
 ## 7. Undo/Redo
 
-- Utilisation d’une **librairie dédiée** (ex: [`use-undo`](https://github.com/aaronpowell/undo), `redux-undo`)
+- Utilisation d’une **librairie dédiée** (ex:
+  [`use-undo`](https://github.com/aaronpowell/undo), `redux-undo`)
   - Historique conservé en mémoire (pas nécessairement persistant)
   - Intégration avec Zustand si possible
 
@@ -92,7 +93,7 @@
 
 ## 9. Icônes
 
-- Utilisation de **Font Awesome** via la librairie React officielle.
+- Utilisation de **Lucide** via la librairie React officielle.
   - Import sélectif des icônes nécessaires.
 
 ---
@@ -107,7 +108,8 @@
 
 ## 11. Gestion des assets
 
-- Tous les assets statiques (images, SVG d’exemple, etc.) placés dans le dossier `public/`
+- Tous les assets statiques (images, SVG d’exemple, etc.) placés dans le dossier
+  `public/`
 - Importés via URL absolue `/` pour compatibilité Vite
 
 ---
